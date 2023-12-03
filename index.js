@@ -32,7 +32,9 @@ var listener = app.listen(process.env.PORT || 3000, function () {
   console.log('Your app is listening on port ' + listener.address().port);
 });
 
-// Get user ip address
+// Get user ip address, language and software
 app.get('/api/whoami', function (req, res) {
-  res.json({ ipaddress: IP.address() });
+  res.json({ ipaddress: IP.address(),
+           language: req.headers['accept-language'],
+           software: req.headers['user-agent']});
 });
